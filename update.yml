@@ -1,0 +1,29 @@
+---
+- hosts: debian10
+  become: true
+  tasks:
+    - name: Updating and upgrading debian 10 packages
+      #ignore_errors: true
+      apt:
+         name: '*'
+         state: latest
+         update_cache: yes
+         #upgrade: safe
+
+- hosts: centos7
+  become: true
+  tasks:
+    - name: Updating and upgrading centos 7 packages
+      yum:
+         name: '*'
+         state: latest
+         update_cache: yes
+
+- hosts: fedora30/centos8
+  become: true
+  tasks:
+    - name: Updating and upgrading fedora 30 and centos 8 packages
+      dnf:
+         name: '*'
+         state: latest
+         update_cache: yes

@@ -1,0 +1,14 @@
+---
+- hosts: target
+  become: true
+  tasks:
+    - name: Stopping MySQL server
+      service:
+        name: mysqld
+        state: stopped
+        enabled: yes
+    - name: Removing MySQL server
+      dnf:
+        name: mysql-server
+        state: removed
+        update_cache: yes

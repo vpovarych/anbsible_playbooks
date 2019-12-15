@@ -1,0 +1,13 @@
+---
+- hosts: target
+  become: true
+  tasks: 
+    - name: Removing /test/file_to_be_removed.txt
+      file: path=/test/file_to_be_removed.txt state=absent
+      notify: restart httpd
+
+  handlers:
+    - name: restart httpd
+      service: 
+        name: httpd
+        state: restarted

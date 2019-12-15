@@ -1,0 +1,17 @@
+---
+- hosts: target
+  become: true
+  tasks:
+
+    - name: Stopping apache
+      service:
+        name: httpd
+        state: stopped
+        enabled: yes
+
+
+    - name: Removing apache, epel-release, and wget
+      dnf:
+        name: ["httpd","epel-release","wget"]
+        state: removed
+        update_cache: yes

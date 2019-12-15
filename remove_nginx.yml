@@ -1,0 +1,14 @@
+---
+- hosts: target
+  become: true
+  tasks:
+    - name: stopping nginx
+      service:
+         name: nginx
+         state: stopped
+         enabled: yes
+    - name: removing nginx
+      dnf:
+         name: nginx
+         state: removed
+         update_cache: yes

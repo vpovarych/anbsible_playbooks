@@ -1,0 +1,15 @@
+---
+- hosts: target
+  become: true
+  tasks:
+    - name: Installing apache, epel-release, and wget
+      dnf:
+        name: ["httpd","epel-release","wget"]
+        state: latest
+        update_cache: yes
+
+    - name: Starting apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes  
